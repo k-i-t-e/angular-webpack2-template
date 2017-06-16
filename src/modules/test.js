@@ -1,5 +1,5 @@
 function test() {
-	alert("It works");
+	alert("It works again");
 }
 
 export { test }

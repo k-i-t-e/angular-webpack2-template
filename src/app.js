@@ -2,5 +2,8 @@
 
 import angular from 'angular'
 import {test} from './modules/test'
+import TestController from './controller/TestController'
 
-test();
+const app = angular.module('chat', []);
+app.controller('testCtrl', TestController);
+
