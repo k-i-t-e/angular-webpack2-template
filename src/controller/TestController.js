@@ -1,6 +1,8 @@
 'use strict'
 
-export default function TestController($scope) {
-	$scope.firstName = "John";
-    $scope.lastName = "Doe";
+export default class TestController {
+	constructor($scope) {
+		$scope.firstName = "John";
+    	$scope.lastName = "Doe";
+	}
 };
