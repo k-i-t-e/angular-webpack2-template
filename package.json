@@ -3,7 +3,7 @@
     "angular": "^1.6.4"
   },
   "scripts": {
-  	"start": "webpack --watch",
+  	"start": "webpack-dev-server",
   	"build": "webpack -p"
 	},
   "devDependencies": {

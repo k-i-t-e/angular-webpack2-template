@@ -1,18 +1,26 @@
 'use strict'
 
-import {messages} from '../modules/TestData'
-
 export default class ChatController {
-	constructor() {
-		this.messages = messages
+	constructor(MessageService) {
+        this._messageService = MessageService;
+        this.messages = [];
+
+        this._messageService.getMessages().then((response) => {
+        	this.messages = response.data;
+			console.log(this.messages);
+		});
+
+        this.html = "";
 	}
 
 	send() {
-		messages.push({
+		this.messages.push({
 			sender:"kite",
 			text: this.text
-		})
+		});
 		
 		this.text = ""
 	}
 }
+
+ChatController.$inject = ['MessageService'];
