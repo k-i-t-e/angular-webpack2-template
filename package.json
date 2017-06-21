@@ -1,11 +1,13 @@
 {
-  "dependencies":{
-    "angular": "^1.6.4"
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.3",
+    "angular-websocket": "^2.0.1"
   },
   "scripts": {
-  	"start": "webpack-dev-server",
-  	"build": "webpack -p"
-	},
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
+  },
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",

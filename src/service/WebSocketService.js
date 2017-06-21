@@ -3,12 +3,14 @@
 export default class WebSocketService {
     constructor($q) {
         this._q = $q;
-        this._ws = new WebSocket("ws://localhost:9000/api/chat/kite");
         this._subscribers = [];
-        this._init();
     }
 
     send(message) {
+        if (!this._ws) {
+            throw new Error("WebSocketService has not been initiated, call init() method before")
+        }
+
         this._ws.send(JSON.stringify(message))
     }
 
@@ -24,14 +26,18 @@ export default class WebSocketService {
         this._subscribers.forEach((s) => s.receive(message))
     }
 
-    _init() {
-        this._ws.onopen = function() {
-            console.log("Socket has been opened!");
-        };
+    init(name) {
+        if (!this._ws) {
+            this._ws = new WebSocket("ws://localhost:9000/api/chat/" + name);
 
-        this._ws.onmessage = (message) => {
-            console.log(message);
-            this._getMessage(message.data);
-        };
+            this._ws.onopen = function() {
+                console.log("Socket has been opened!");
+            };
+
+            this._ws.onmessage = (message) => {
+                console.log(message);
+                this._getMessage(message.data);
+            };
+        }
     }
 }
