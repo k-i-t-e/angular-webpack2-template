@@ -1,8 +1,10 @@
 'use strict'
 
 export default class ChatController {
-	constructor(MessageService) {
+	constructor(MessageService, WebSocketService) {
         this._messageService = MessageService;
+        this._webSocketService = WebSocketService;
+        this._webSocketService.subscribe(this);
         this.messages = [];
 
         this._messageService.getMessages().then((response) => {
@@ -14,13 +16,20 @@ export default class ChatController {
 	}
 
 	send() {
-		this.messages.push({
-			sender:"kite",
-			text: this.text
-		});
+		let messsage = {
+            sender:"kite",
+            text: this.text
+        };
+
+	    this.messages.push(messsage);
 		
-		this.text = ""
+		this.text = "";
+        this._webSocketService.send(messsage);
 	}
+
+    receive(message) {
+	    this.messages.push({text: message, sender:""})
+    }
 }
 
-ChatController.$inject = ['MessageService'];
+ChatController.$inject = ['MessageService', 'WebSocketService'];

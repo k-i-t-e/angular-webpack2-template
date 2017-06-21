@@ -20,10 +20,8 @@ export default class MessageService {
     }
 
     _mockMessages() {
-        let deferred = this._q.defer();
-
-        deferred.resolve({data: this._data})
-
-        return deferred.promise
+        return this._q((resolve, reject) => {
+            resolve({data: this._data})
+        })
     }
 }
