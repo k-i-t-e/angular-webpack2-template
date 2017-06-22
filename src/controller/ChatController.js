@@ -1,9 +1,10 @@
 'use strict'
 
 export default class ChatController {
-	constructor(MessageService, WebSocketService, $rootScope) {
+	constructor(MessageService, WebSocketService, AuthService, $rootScope) {
         this._messageService = MessageService;
         this._webSocketService = WebSocketService;
+        this._authService = AuthService;
         this._webSocketService.subscribe(this);
         this.messages = [];
         this._rootScope = $rootScope;
@@ -16,9 +17,13 @@ export default class ChatController {
         this.html = "";
 	}
 
+	getName() {
+	    return this._authService.name ? this._authService.name : null;
+    }
+
 	send() {
 		let messsage = {
-            sender:"kite",
+            sender:this.getName(),
             text: this.text
         };
 
@@ -29,9 +34,9 @@ export default class ChatController {
 	}
 
     receive(message) {
-	    this.messages.push({text: message, sender:""});
+	    this.messages.push(message);
         this._rootScope.$apply()
     }
 }
 
-ChatController.$inject = ['MessageService', 'WebSocketService', '$rootScope'];
+ChatController.$inject = ['MessageService', 'WebSocketService', 'AuthService', '$rootScope'];

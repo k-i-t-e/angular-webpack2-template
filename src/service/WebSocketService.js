@@ -36,7 +36,7 @@ export default class WebSocketService {
 
             this._ws.onmessage = (message) => {
                 console.log(message);
-                this._getMessage(message.data);
+                this._getMessage(JSON.parse(message.data));
             };
         }
     }

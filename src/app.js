@@ -6,6 +6,7 @@ import LoginController from './controller/LoginController'
 
 import MessageService from './service/MessageService'
 import WebSocketService from './service/WebSocketService'
+import AuthService from './service/AuthService'
 
 const app = angular.module('chat', []);
 
@@ -20,5 +21,6 @@ app
 		controller: LoginController
 	})
 	.service('MessageService', MessageService)
-	.service('WebSocketService', WebSocketService);
+	.service('WebSocketService', WebSocketService)
+	.service('AuthService', AuthService);
 
