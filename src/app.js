@@ -1,6 +1,8 @@
 'use strict'
 
 import angular from 'angular'
+import uiRouter from 'angular-ui-router'
+
 import ChatController from './controller/ChatController'
 import LoginController from './controller/LoginController'
 
@@ -8,7 +10,9 @@ import MessageService from './service/MessageService'
 import WebSocketService from './service/WebSocketService'
 import AuthService from './service/AuthService'
 
-const app = angular.module('chat', []);
+import routing from './app.config';
+
+const app = angular.module('chat', [uiRouter]);
 
 app
 	.component('chat', {
@@ -22,5 +26,7 @@ app
 	})
 	.service('MessageService', MessageService)
 	.service('WebSocketService', WebSocketService)
-	.service('AuthService', AuthService);
+	.service('AuthService', AuthService)
+	.config(routing)
+;
 
