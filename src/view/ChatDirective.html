@@ -1,5 +1,16 @@
 <div>
-	<div ng-repeat="msg in chatCtrl.messages">{{msg.sender + ": " + msg.text}}</div>
-	<input type="text" ng-model="chatCtrl.text">
-	<button ng-click="chatCtrl.send()">Send</button>
+	<div layout="row">
+		<div flex="15"></div>
+		<div flex="30">[Here be chats]</div>
+		<div flex="50">
+			<div layout="column">
+				<div ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{chatCtrl.getUiAlignment(msg)}} center">
+					<div>{{msg.sender + ": " + msg.text}}</div>
+				</div>
+			</div>
+			<input type="text" ng-model="chatCtrl.text">
+			<button ng-click="chatCtrl.send()">Send</button>
+		</div>
+		<div flex="15"></div>
+	</div>
 </div>

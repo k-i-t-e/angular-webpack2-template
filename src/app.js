@@ -2,6 +2,9 @@
 
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
+import angularMaterial from 'angular-material';
+import 'angular-material/angular-material.css';
+import './css/styles.css'
 
 import ChatController from './controller/ChatController'
 import LoginController from './controller/LoginController'
@@ -12,7 +15,7 @@ import AuthService from './service/AuthService'
 
 import routing from './app.config';
 
-const app = angular.module('chat', [uiRouter]);
+const app = angular.module('chat', [uiRouter, angularMaterial]);
 
 app
 	.component('chat', {
@@ -27,6 +30,5 @@ app
 	.service('MessageService', MessageService)
 	.service('WebSocketService', WebSocketService)
 	.service('AuthService', AuthService)
-	.config(routing)
-;
+	.config(routing);
 

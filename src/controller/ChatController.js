@@ -33,6 +33,10 @@ export default class ChatController {
         this._webSocketService.send(messsage);
 	}
 
+	getUiAlignment(message) {
+	    return message.sender === this.getName() ? 'end' : 'start'
+    }
+
     receive(message) {
 	    this.messages.push(message);
         this._rootScope.$apply()
