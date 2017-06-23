@@ -4,12 +4,21 @@
 		<div flex="30">[Here be chats]</div>
 		<div flex="50">
 			<div layout="column">
-				<div ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{chatCtrl.getUiAlignment(msg)}} center">
-					<div>{{msg.sender + ": " + msg.text}}</div>
+				<div ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{ chatCtrl.isMyMessage(msg) ? 'end' : 'start' }} center">
+					<md-card  md-theme="{{chatCtrl.isMyMessage(msg) ? 'default' : 'blue'}}">
+						<md-card-title>
+							<span class="md-subhead">{{msg.sender}}</span>
+						</md-card-title>
+						<md-card-content>
+							<div>{{msg.text}}</div>
+						</md-card-content>
+					</md-card>
 				</div>
 			</div>
-			<input type="text" ng-model="chatCtrl.text">
-			<button ng-click="chatCtrl.send()">Send</button>
+			<md-input-container>
+				<input type="text" ng-model="chatCtrl.text">
+				<md-button ng-click="chatCtrl.send()">Send</md-button>
+			</md-input-container>
 		</div>
 		<div flex="15"></div>
 	</div>

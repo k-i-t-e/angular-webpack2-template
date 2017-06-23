@@ -1,4 +1,6 @@
 <div layout="row" layout-align="center enter" layout-margin>
-    <input ng-model="$ctrl.name">
-    <button ng-click="$ctrl.login($ctrl.name)">Login</button>
+    <md-input-container>
+        <input ng-model="$ctrl.name">
+        <md-button class="md-primary" ng-click="$ctrl.login($ctrl.name)">Login</md-button>
+    </md-input-container>
 </div>

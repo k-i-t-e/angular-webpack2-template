@@ -13,7 +13,8 @@ import MessageService from './service/MessageService'
 import WebSocketService from './service/WebSocketService'
 import AuthService from './service/AuthService'
 
-import routing from './app.config';
+import routing from './app.config.routing';
+import themes from './app.config.themes';
 
 const app = angular.module('chat', [uiRouter, angularMaterial]);
 
@@ -30,5 +31,6 @@ app
 	.service('MessageService', MessageService)
 	.service('WebSocketService', WebSocketService)
 	.service('AuthService', AuthService)
-	.config(routing);
+	.config(routing)
+	.config(themes);
 
