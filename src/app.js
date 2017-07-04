@@ -9,6 +9,7 @@ import 'angular-material/angular-material.css';
 import './css/styles.css'
 
 import ChatController from './controller/ChatController'
+import ChatsController from './controller/ChatsController'
 import LoginController from './controller/LoginController'
 
 import MessageService from './service/MessageService'
@@ -22,7 +23,7 @@ const app = angular.module('chat', [uiRouter, angularMaterial, glue]);
 
 app
 	.component('chat', {
-		templateUrl:'./view/ChatDirective.html',
+		templateUrl:'./view/chatComponent.html',
 		controller: ChatController,
 		controllerAs:'chatCtrl'
 	})
@@ -30,6 +31,10 @@ app
 		templateUrl: './view/loginComponent.html',
 		controller: LoginController
 	})
+    .component('chats', {
+        templateUrl:'./view/ChatDirective.html',
+        controller: ChatsController
+    })
 	.service('MessageService', MessageService)
 	.service('WebSocketService', WebSocketService)
 	.service('AuthService', AuthService)

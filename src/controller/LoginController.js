@@ -10,7 +10,7 @@ export default class LoginController {
     login(name) {
         this._webSocketService.init(name);
         this._authService.name = name;
-        this._state.go('chat')
+        this._state.go('chats')
     }
 }
 

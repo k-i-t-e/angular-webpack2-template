@@ -17,9 +17,9 @@ export default function routing($urlRouterProvider, $stateProvider) {
     };
 
     let chatState = {
-        name: 'chat',
-        url: '/chat',
-        component: 'chat'
+        name: 'chats',
+        url: '/chats',
+        component: 'chats'
     };
 
     $stateProvider.state(loginState);

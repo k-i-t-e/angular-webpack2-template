@@ -19,15 +19,20 @@ export default class ChatController {
     }
 
 	send() {
-		let messsage = {
-            sender:this.getName(),
-            text: this.text
+		let message = {
+            sender: this.getName(),
+            text: this.text,
+            address: null
         };
 
-	    this.messages.push(messsage);
+		if (this.address) {
+		    message.address = this.address
+        }
+
+	    this.messages.push(message);
 		
 		this.text = "";
-        this._webSocketService.send(messsage);
+        this._webSocketService.send(message);
 	}
 
 	isMyMessage(message) {

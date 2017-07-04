@@ -14,8 +14,11 @@ export default class MessageService {
         this._q = $q;
     }
 
-    getMessages() {
-        //return this._mockMessages()
+    getMessages(to, from) {
+        if (to && from) {
+            return this._http.get("http://localhost:9000/api/messages/{0}/{1}".format(to, from));
+        }
+
         return this._http.get("http://localhost:9000/api/messages/kite");
     }
 
