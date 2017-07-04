@@ -3,6 +3,8 @@
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import angularMaterial from 'angular-material';
+import glue from 'angularjs-scroll-glue';
+
 import 'angular-material/angular-material.css';
 import './css/styles.css'
 
@@ -16,7 +18,7 @@ import AuthService from './service/AuthService'
 import routing from './app.config.routing';
 import themes from './app.config.themes';
 
-const app = angular.module('chat', [uiRouter, angularMaterial]);
+const app = angular.module('chat', [uiRouter, angularMaterial, glue]);
 
 app
 	.component('chat', {

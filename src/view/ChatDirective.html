@@ -1,11 +1,12 @@
 <div>
 	<div layout="row">
 		<div flex="15"></div>
-		<div flex="30">[Here be chats]</div>
+		<div flex="30">[Here be chats]
+		</div>
 		<div flex="50">
 			<div layout="column" layout-fill>
-				<md-virtual-repeat-container flex="90" md-top-index="chatCtrl.topIndex">
-					<div md-virtual-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{ chatCtrl.isMyMessage(msg) ? 'end' : 'start' }} center">
+				<div flex="90" md-top-index="chatCtrl.topIndex" class="chat-window-repeater" scroll-glue>
+					<div class="message" ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{ chatCtrl.isMyMessage(msg) ? 'end' : 'start' }} center">
 						<md-card  md-theme="{{chatCtrl.isMyMessage(msg) ? 'default' : 'blue'}}">
 							<md-card-content>
 								<div class="md-body-1" style="font-weight: bold">{{msg.sender}}</div>
@@ -13,7 +14,7 @@
 							</md-card-content>
 						</md-card>
 					</div>
-				</md-virtual-repeat-container>
+				</div>
 				<md-input-container flex>
 					<input type="text" ng-model="chatCtrl.text">
 					<md-button ng-click="chatCtrl.send()">Send</md-button>

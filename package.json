@@ -5,7 +5,8 @@
     "angular-aria": "^1.6.4",
     "angular-material": "^1.1.4",
     "angular-ui-router": "^1.0.3",
-    "angular-websocket": "^2.0.1"
+    "angular-websocket": "^2.0.1",
+    "angularjs-scroll-glue": "^2.2.0"
   },
   "scripts": {
     "start": "webpack-dev-server",
