@@ -1,21 +1,34 @@
 'use strict'
 
 export default class ChatController {
-	constructor(MessageService, WebSocketService, AuthService, $rootScope) {
+	constructor(MessageService, WebSocketService, AuthService, $scope) {
         this._messageService = MessageService;
         this._webSocketService = WebSocketService;
         this._authService = AuthService;
         this._webSocketService.subscribe(this);
         this.messages = [];
-        this._rootScope = $rootScope;
+        this._scope = $scope;
+        this.topIndex = 0;
 
         this._messageService.getMessages().then((response) => {
         	this.messages = response.data;
-			console.log(this.messages);
+			//this.topIndex = this.messages.length + 100;
+			//console.log(this.topIndex)
 		});
 
-        this.html = "";
+        this._scope.$watch('chatCtrl.messages.length', this.updateTopIndex());
 	}
+
+	updateTopIndex() {
+	    return (oldLength, length) => {
+	        if (oldLength === length) {
+	            return
+            }
+
+	        this.topIndex = Math.max(oldLength, length);
+            console.log(this.topIndex)
+        }
+    }
 
 	getName() {
 	    return this._authService.name ? this._authService.name : null;
@@ -39,8 +52,9 @@ export default class ChatController {
 
     receive(message) {
 	    this.messages.push(message);
-        this._rootScope.$apply()
+        this.topIndex = this.messages.length;
+        this._scope.$apply()
     }
 }
 
-ChatController.$inject = ['MessageService', 'WebSocketService', 'AuthService', '$rootScope'];
+ChatController.$inject = ['MessageService', 'WebSocketService', 'AuthService', '$scope'];
