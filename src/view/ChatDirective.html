@@ -8,14 +8,21 @@
 						<input type="text" ng-model="$ctrl.username">
 					</div>
 					<div flex=>
-						<md-button ng-click="$ctrl.addChat($ctrl.username)">+</md-button>
+						<md-button class="md-icon-button md-primary" ng-click="$ctrl.addChat($ctrl.username)">
+							<ng-md-icon icon="add" style="fill: blue"></ng-md-icon>
+						</md-button>
 					</div>
 				</md-input-container>
-				<div flex="85"></div>
+				<div flex="85">
+					<div ng-repeat="user in $ctrl.users" ng-click="$ctrl.selectChat(user)">
+						<div>{{user}}</div>
+						<div>{{$ctrl.users[user]}}</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div flex="50">
-			<chat></chat>
+			<chat address="$ctrl.address"></chat>
 		</div>
 		<div flex="15"></div>
 	</div>

@@ -4,8 +4,10 @@ import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import angularMaterial from 'angular-material';
 import glue from 'angularjs-scroll-glue';
+import ngMdIcons from 'angular-material-icons'
 
 import 'angular-material/angular-material.css';
+import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import './css/styles.css'
 
 import ChatController from './controller/ChatController'
@@ -19,13 +21,16 @@ import AuthService from './service/AuthService'
 import routing from './app.config.routing';
 import themes from './app.config.themes';
 
-const app = angular.module('chat', [uiRouter, angularMaterial, glue]);
+const app = angular.module('chat', [uiRouter, angularMaterial, glue, ngMdIcons]);
 
 app
 	.component('chat', {
 		templateUrl:'./view/chatComponent.html',
 		controller: ChatController,
-		controllerAs:'chatCtrl'
+		controllerAs:'chatCtrl',
+        bindings: {
+            address:'<'
+        }
 	})
 	.component('login', {
 		templateUrl: './view/loginComponent.html',
@@ -33,7 +38,7 @@ app
 	})
     .component('chats', {
         templateUrl:'./view/ChatDirective.html',
-        controller: ChatsController
+        controller: ChatsController,
     })
 	.service('MessageService', MessageService)
 	.service('WebSocketService', WebSocketService)

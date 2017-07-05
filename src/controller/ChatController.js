@@ -14,6 +14,16 @@ export default class ChatController {
 		});
 	}
 
+    $onChanges(changesObj) {
+        if (changesObj.address.currentValue === "global") {
+            this._messageService.getMessages().then((response) => {
+                this.messages = response.data;
+            });
+        } else {
+            this.messages = [];
+        }
+    }
+
 	getName() {
 	    return this._authService.name ? this._authService.name : null;
     }

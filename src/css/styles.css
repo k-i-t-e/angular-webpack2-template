@@ -1,5 +1,9 @@
-.chat-window-repeater {
+.chat-window {
     overflow-y: scroll;
+}
+
+.chat-window-wrapper {
+    padding-top: 20px
 }
 
 .message {

@@ -1,5 +1,5 @@
-<div layout="column" layout-fill>
-    <div flex="85" md-top-index="chatCtrl.topIndex" class="chat-window-repeater" scroll-glue>
+<div layout="column" layout-fill class="chat-window-wrapper">
+    <div flex="85" md-top-index="chatCtrl.topIndex" class="chat-window" scroll-glue>
         <div class="message" ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{ chatCtrl.isMyMessage(msg) ? 'end' : 'start' }} center">
             <md-card  md-theme="{{chatCtrl.isMyMessage(msg) ? 'default' : 'blue'}}">
                 <md-card-content>
