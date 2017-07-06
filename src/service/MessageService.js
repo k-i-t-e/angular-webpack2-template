@@ -16,10 +16,14 @@ export default class MessageService {
 
     getMessages(to, from) {
         if (to && from) {
-            return this._http.get("http://localhost:9000/api/messages/{0}/{1}".format(to, from));
+            return this._http.get(`http://localhost:9000/api/messages/${to}/${from}`);
         }
 
-        return this._http.get("http://localhost:9000/api/messages/kite");
+        return this._http.get("http://localhost:9000/api/messages/");
+    }
+
+    getChats(user) {
+        return this._http.get(`http://localhost:9000/api/chats/${user}`)
     }
 
     _mockMessages() {

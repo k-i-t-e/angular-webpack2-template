@@ -15,12 +15,15 @@ export default class ChatController {
 	}
 
     $onChanges(changesObj) {
-        if (changesObj.address.currentValue === "global") {
+        if (changesObj.address.currentValue === "Global") {
             this._messageService.getMessages().then((response) => {
                 this.messages = response.data;
             });
         } else {
-            this.messages = [];
+            this.address = changesObj.address.currentValue;
+            this._messageService.getMessages(this.getName(), this.address).then((response) => {
+                this.messages = response.data;
+            });
         }
     }
 
@@ -39,7 +42,7 @@ export default class ChatController {
 		    message.address = this.address
         }
 
-	    this.messages.push(message);
+        this.messages.push(message);
 		
 		this.text = "";
         this._webSocketService.send(message);
@@ -50,9 +53,13 @@ export default class ChatController {
     }
 
     receive(message) {
-	    this.messages.push(message);
-        this.topIndex = this.messages.length;
-        this._scope.$apply()
+	    if ((message.address !== null && message.sender === this.address) || (this.address === 'Global' && message.address === null)) {
+            this.messages.push(message);
+            this.topIndex = this.messages.length;
+            this._scope.$apply()
+        } else {
+	        console.log(message)
+        }
     }
 }
 

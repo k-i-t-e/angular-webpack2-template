@@ -1,26 +1,45 @@
 'use strict'
 
 export default class ChatsController {
-    constructor(MessageService) {
-        this._messageSerice = MessageService;
-        this.users = ['global'];
+    constructor(MessageService, AuthService) {
+        this._messageService = MessageService;
+        this._authService = AuthService;
+        this.users = ['Global'];
         this.chats = {
-            'global': null
+            'Global': null
         };
-        this.address = 'global';
+        this.address = 'Global';
+
+        this.getChats();
     }
 
     addChat(user) {
-        if (user && user.trim() !== "") {
-            this.users.push(user);
-            this.chats[user] = null;
-            this.username = '';
+        let userTrimmed = user.trim();
+        if (user && userTrimmed !== "" && this.users.indexOf(userTrimmed) < 0) {
+            this.users.push(userTrimmed);
+            this.chats[userTrimmed] = null;
         }
+
+        this.username = '';
     }
 
     selectChat(user) {
         this.address = user;
     }
+
+    getChats() {
+        this._messageService.getChats(this._authService.name).then((response) => {
+            response.data.forEach((msg) => {
+                if (msg.address === this._authService.name) {
+                    this.chats[msg.sender] = msg.text;
+                    this.users.push(msg.sender);
+                } else {
+                    this.chats[msg.address] = msg.text;
+                    this.users.push(msg.address);
+                }
+            });
+        })
+    }
 }
 
-ChatsController.$inject = ['MessageService'];
+ChatsController.$inject = ['MessageService', 'AuthService'];

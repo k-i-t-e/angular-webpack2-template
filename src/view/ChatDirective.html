@@ -13,12 +13,15 @@
 						</md-button>
 					</div>
 				</md-input-container>
-				<div flex="85">
-					<div ng-repeat="user in $ctrl.users" ng-click="$ctrl.selectChat(user)">
-						<div>{{user}}</div>
-						<div>{{$ctrl.users[user]}}</div>
-					</div>
-				</div>
+				<md-list flex="85">
+					<md-list-item class="md-2-line" ng-repeat="user in $ctrl.users" ng-click="$ctrl.selectChat(user)">
+						<div class="md-list-item-text">
+							<h3>{{user}}</h3>
+							<p>{{$ctrl.chats[user]}}</p>
+						</div>
+						<md-divider></md-divider>
+					</md-list-item>
+				</md-list>
 			</div>
 		</div>
 		<div flex="50">
