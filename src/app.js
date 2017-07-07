@@ -29,7 +29,8 @@ app
 		controller: ChatController,
 		controllerAs:'chatCtrl',
         bindings: {
-            address:'<'
+            address:'<',
+			onMessage:'&'
         }
 	})
 	.component('login', {

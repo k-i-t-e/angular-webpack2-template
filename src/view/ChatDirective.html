@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<div flex="50">
-			<chat address="$ctrl.address"></chat>
+			<chat address="$ctrl.address" on-message="$ctrl.updateChats(message)"></chat>
 		</div>
 		<div flex="15"></div>
 	</div>

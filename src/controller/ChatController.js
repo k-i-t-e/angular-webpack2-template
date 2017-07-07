@@ -38,8 +38,9 @@ export default class ChatController {
             address: null
         };
 
-		if (this.address) {
-		    message.address = this.address
+		if (this.address && this.address !== 'Global') {
+		    message.address = this.address;
+		    this.onMessage({message : message})
         }
 
         this.messages.push(message);
@@ -53,13 +54,13 @@ export default class ChatController {
     }
 
     receive(message) {
-	    if ((message.address !== null && message.sender === this.address) || (this.address === 'Global' && message.address === null)) {
-            this.messages.push(message);
-            this.topIndex = this.messages.length;
-            this._scope.$apply()
-        } else {
-	        console.log(message)
-        }
+        this._scope.$apply(() => {
+            if ((message.address !== null && message.sender === this.address) || (this.address === 'Global' && message.address === null)) {
+                this.messages.push(message);
+                this.topIndex = this.messages.length;
+            }
+            this.onMessage({message : message})
+        });
     }
 }
 

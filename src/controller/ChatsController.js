@@ -1,7 +1,7 @@
 'use strict'
 
 export default class ChatsController {
-    constructor(MessageService, AuthService) {
+    constructor(MessageService, AuthService, $scope) {
         this._messageService = MessageService;
         this._authService = AuthService;
         this.users = ['Global'];
@@ -9,6 +9,7 @@ export default class ChatsController {
             'Global': null
         };
         this.address = 'Global';
+        this._scope = $scope;
 
         this.getChats();
     }
@@ -40,6 +41,20 @@ export default class ChatsController {
             });
         })
     }
+
+    updateChats(message) {
+        if (message.address) { // ignore global messages
+            let user = message.address === this._authService.name ? message.sender : message.address;
+
+            if (!this.chats[user]) {
+                this.users.push(user);
+            }
+
+            this.chats[user] = message.text;
+        }
+
+        console.log(message)
+    }
 }
 
-ChatsController.$inject = ['MessageService', 'AuthService'];
+ChatsController.$inject = ['MessageService', 'AuthService', '$scope'];
