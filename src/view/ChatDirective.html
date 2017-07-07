@@ -1,7 +1,7 @@
 <div>
 	<div layout="row">
-		<div flex="15"></div>
-		<div flex="30">
+		<div flex="15" class="outside"></div>
+		<div flex="30" class="border-right">
 			<div layout="column">
 				<md-input-container flex="5" layout="row">
 					<div flex>
@@ -14,6 +14,7 @@
 					</div>
 				</md-input-container>
 				<md-list flex="85">
+					<md-divider></md-divider>
 					<md-list-item class="md-2-line" ng-repeat="user in $ctrl.users" ng-click="$ctrl.selectChat(user)">
 						<div class="md-list-item-text">
 							<h3>{{user}}</h3>
@@ -27,6 +28,6 @@
 		<div flex="50">
 			<chat address="$ctrl.address" on-message="$ctrl.updateChats(message)"></chat>
 		</div>
-		<div flex="15"></div>
+		<div flex="15" class="outside"></div>
 	</div>
 </div>

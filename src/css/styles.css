@@ -9,3 +9,13 @@
 .message {
     word-break: break-all;
 }
+
+.border-right {
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgba(0,0,0,0.12);
+}
+
+.outside {
+    background-color: rgb(237, 238, 240);
+}
