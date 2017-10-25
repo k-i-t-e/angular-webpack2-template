@@ -43,8 +43,8 @@ export default class ChatsController {
     }
 
     updateChats(message) {
-        if (message.address) { // ignore global messages
-            let user = message.address === this._authService.name ? message.sender : message.address;
+        if (message.to) { // ignore global messages
+            let user = message.to === this._authService.name ? message.from : message.to;
 
             if (!this.chats[user]) {
                 this.users.push(user);
