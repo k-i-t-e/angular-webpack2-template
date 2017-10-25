@@ -8,6 +8,7 @@ export default class ChatsController {
         this.chats = {
             'Global': null
         };
+        this.unreadCounts = {};
         this.address = 'Global';
         this._scope = $scope;
 
@@ -26,6 +27,7 @@ export default class ChatsController {
 
     selectChat(user) {
         this.address = user;
+        this.unreadCounts[user] = 0;
     }
 
     getChats() {
@@ -43,7 +45,7 @@ export default class ChatsController {
     }
 
     updateChats(message) {
-        if (message.to) { // ignore global messages
+        if (message.to) { // ignore global messages and join/leave
             let user = message.to === this._authService.name ? message.from : message.to;
 
             if (!this.chats[user]) {
@@ -51,9 +53,25 @@ export default class ChatsController {
             }
 
             this.chats[user] = message.text;
+
+            if (message.from !== this.address && message.to !== this.address) {
+                if (this.unreadCounts[user]) {
+                    this.unreadCounts[user]++;
+                } else {
+                    this.unreadCounts[user] = 1;
+                }
+            }
         }
 
         console.log(message)
+    }
+
+    hasUnread(from) {
+        if (from === 'Global') {
+            return false;
+        }
+
+        return this.unreadCounts[from] && this.unreadCounts[from] > 0;
     }
 }
 

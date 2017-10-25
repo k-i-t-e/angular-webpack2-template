@@ -38,7 +38,7 @@ app
 		controller: LoginController
 	})
     .component('chats', {
-        templateUrl:'./view/ChatDirective.html',
+        templateUrl:'./view/chatsComponent.html',
         controller: ChatsController,
     })
 	.service('MessageService', MessageService)

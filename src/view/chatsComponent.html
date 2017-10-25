@@ -17,8 +17,15 @@
 					<md-divider></md-divider>
 					<md-list-item class="md-2-line" ng-repeat="user in $ctrl.users" ng-click="$ctrl.selectChat(user)">
 						<div class="md-list-item-text">
-							<h3>{{user}}</h3>
-							<p>{{$ctrl.chats[user]}}</p>
+							<div layout="row">
+								<div flex="95">
+									<h3>{{user}}</h3>
+									<p>{{$ctrl.chats[user]}}</p>
+								</div>
+								<div flex ng-show="$ctrl.hasUnread(user)">
+									(1)
+								</div>
+							</div>
 						</div>
 						<md-divider></md-divider>
 					</md-list-item>
