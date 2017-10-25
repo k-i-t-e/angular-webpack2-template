@@ -33,13 +33,13 @@ export default class ChatController {
 
 	send() {
 		let message = {
-            sender: this.getName(),
+            from: this.getName(),
             text: this.text,
-            address: null
+            to: null
         };
 
 		if (this.address && this.address !== 'Global') {
-		    message.address = this.address;
+		    message.to = this.address;
 		    this.onMessage({message : message})
         }
 
@@ -50,12 +50,12 @@ export default class ChatController {
 	}
 
 	isMyMessage(message) {
-	    return message.sender === this.getName()
+	    return message.from === this.getName()
     }
 
     receive(message) {
         this._scope.$apply(() => {
-            if ((message.address !== null && message.sender === this.address) || (this.address === 'Global' && message.address === null)) {
+            if ((message.address !== null && message.from === this.address) || (this.address === 'Global' && message.from === null)) {
                 this.messages.push(message);
                 this.topIndex = this.messages.length;
             }

@@ -3,10 +3,10 @@
 export default class MessageService {
     constructor($http, $q) {
         this._data = [{
-            sender:"kite",
+            from:"kite",
             text:"ololo"
         }, {
-            sender:"kite",
+            from:"kite",
             text:"message!"
         }];
 

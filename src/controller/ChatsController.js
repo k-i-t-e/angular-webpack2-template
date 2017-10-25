@@ -31,12 +31,12 @@ export default class ChatsController {
     getChats() {
         this._messageService.getChats(this._authService.name).then((response) => {
             response.data.forEach((msg) => {
-                if (msg.address === this._authService.name) {
-                    this.chats[msg.sender] = msg.text;
-                    this.users.push(msg.sender);
+                if (msg.to === this._authService.name) {
+                    this.chats[msg.from] = msg.text;
+                    this.users.push(msg.from);
                 } else {
-                    this.chats[msg.address] = msg.text;
-                    this.users.push(msg.address);
+                    this.chats[msg.to] = msg.text;
+                    this.users.push(msg.to);
                 }
             });
         })

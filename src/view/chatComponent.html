@@ -3,7 +3,7 @@
         <div class="message" ng-repeat="msg in chatCtrl.messages" layout="row" layout-align="{{ chatCtrl.isMyMessage(msg) ? 'end' : 'start' }} center">
             <md-card  md-theme="{{chatCtrl.isMyMessage(msg) ? 'default' : 'blue'}}">
                 <md-card-content>
-                    <div class="md-body-1" style="font-weight: bold">{{msg.sender}}</div>
+                    <div class="md-body-1" style="font-weight: bold">{{msg.from}}</div>
                     <div class="md-body-2">{{msg.text}}</div>
                 </md-card-content>
             </md-card>
